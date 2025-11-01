@@ -1,6 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+//----------------------------Бургер меню----------------------------
+    const burger = document.getElementById('burger');
+    const mobileNav = document.getElementById('navigation-mobile');
+    const closeBtn = mobileNav.querySelector('.navigation-mobile__close');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const navLinks = mobileNav.querySelectorAll('.mobile-menu-list a');
 
+    const openMenu = () => {
+        mobileNav.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // блокируем скролл
+    };
+
+    const closeMenu = () => {
+        mobileNav.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    // Открытие
+    burger.addEventListener('click', openMenu);
+
+    // Закрытие по крестику
+    closeBtn.addEventListener('click', closeMenu);
+
+    // Закрытие по клику на ссылку
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Закрытие по клику на оверлей
+    overlay.addEventListener('click', closeMenu);
+
+    // Закрытие по нажатию Esc
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            closeMenu();
+        }
+    });
 
 //----------------------------Логика пишущей машинки в блоке Hero----------------------------
     const container = document.getElementById('info__typewriter');
