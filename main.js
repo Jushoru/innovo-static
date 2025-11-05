@@ -122,6 +122,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+//----------------------------Логика для стрелок projects----------------------------
+
+const carousel = document.querySelector('[data-carousel]');
+
+const prevBtn = carousel.parentElement.querySelector('.projects__nav--prev');
+const nextBtn = carousel.parentElement.querySelector('.projects__nav--next');
+
+// Проверяем, нужно ли вообще отображать навигацию
+function updateNavVisibility() {
+    const scrollWidth = carousel.scrollWidth;
+    const clientWidth = carousel.clientWidth;
+    const scrollLeft = carousel.scrollLeft;
+
+    // Показываем кнопки, только если контент не помещается
+    const shouldShowNav = scrollWidth > clientWidth;
+    prevBtn.toggleAttribute('hidden', !shouldShowNav);
+    nextBtn.toggleAttribute('hidden', !shouldShowNav);
+
+    // Отключаем кнопки на краях
+    prevBtn.disabled = scrollLeft === 0;
+    nextBtn.disabled = scrollLeft + clientWidth >= scrollWidth - 1; // -1 на случай дробных значений
+}
+
+// Прокрутка на ширину карточки (или 80% ширины контейнера)
+function scrollByCard(direction) {
+    const card = carousel.querySelector('.projects__card');
+    const cardWidth = card ? card.offsetWidth + parseInt(getComputedStyle(carousel).gap) : carousel.clientWidth * 0.8;
+    carousel.scrollBy({
+        left: direction * cardWidth,
+        behavior: 'smooth'
+    });
+}
+
+// Слушаем скролл и изменение размера
+carousel.addEventListener('scroll', updateNavVisibility);
+window.addEventListener('resize', updateNavVisibility);
+
+// Кнопки
+prevBtn?.addEventListener('click', () => scrollByCard(-1));
+nextBtn?.addEventListener('click', () => scrollByCard(1));
+
+// Инициализация
+updateNavVisibility();
 
 
 //----------------------------Логика для открытия popup'ов секции projects----------------------------
