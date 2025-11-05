@@ -328,7 +328,12 @@ h6 {
 hr {
     border: 1.5px solid var(--base-background-2);
     width: 100%;
-    margin: 40px 0 40px 0;
+    margin: 40px 0;
+}
+@media (max-width: 767px) {
+    hr {
+        margin: 20px 0;
+    }
 }
 
 .main-logo {
@@ -1130,6 +1135,16 @@ hr {
     transform: translateY(200px);
     transition: transform 0.3s ease;
 }
+@media (max-width: 767px) {
+    .project-modal__content {
+        max-width: 100dvw;
+        max-height: 100dvh;
+        width: 100dvw;
+        height: 100dvh;
+        border-radius: 0;
+        margin: 0;
+    }
+}
 
 .project-modal.active .project-modal__content {
     transform: translateY(0);
@@ -1148,9 +1163,15 @@ hr {
 
 .project-modal__grid-table {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
     gap: 1rem 2rem;
     margin: 1.5rem 0;
+}
+@media (max-width: 767px) {
+    .project-modal__grid-table {
+        margin: 0;
+        gap: 1rem;
+    }
 }
 
 .project-modal__grid-header {
@@ -1160,6 +1181,16 @@ hr {
     color: #222;
     align-self: start;
 }
+@media (max-width: 767px) {
+    .project-modal__grid-header {
+        font-size: 1rem;
+    }
+}
+
+.project-modal__grid-cell {
+    position: relative;
+    overflow: hidden;
+}
 
 .project-modal__grid-cell li {
     font-weight: 500;
@@ -1167,8 +1198,8 @@ hr {
     margin-bottom: 5px;
     position: relative;
     padding-left: 1.2em;
+    text-align: justify;
 }
-
 .project-modal__grid-cell li::before {
     content: "•";
     color: inherit;
