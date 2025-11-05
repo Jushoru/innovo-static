@@ -271,11 +271,18 @@ a {
 h1 {
     font-family: 'Manrope', 'sans-serif';
     font-weight: 500;
-    font-size: 52px;
-    line-height: 54px;
+    font-size: 60px;
+    line-height: 62px;
     letter-spacing: -2px;
     margin-top: var(--h-margin);
     margin-bottom: 0;
+}
+@media (max-width: 1023px) {
+    h1 {
+        font-size: 52px;
+        line-height: 54px;
+        letter-spacing: -2px;
+    }
 }
 @media (max-width: 479px) {
     h1 {
@@ -575,7 +582,7 @@ hr {
 .info {
     margin-top: 0;
     margin-bottom: 15px;
-    width: 700px;
+    width: 800px;
 }
 @media (max-width: 1023px) {
     .info {
