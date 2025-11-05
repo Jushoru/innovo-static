@@ -251,11 +251,11 @@ svg * {
     cursor: pointer;
 }
 
-.toggle-button-container:hover,
-.toggle-button-container:active,
-.toggle-button-container:focus {
-    background: var(--accent-blue);
-    color: white;
+@media (hover: hover) and (pointer: fine) {
+    .toggle-button-container:hover {
+        background: var(--accent-blue);
+        color: white;
+    }
 }
 
 body {

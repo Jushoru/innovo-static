@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const carousel = document.querySelector('[data-carousel]');
 
+const navContainer = carousel.parentElement.querySelector('.projects__nav-container');
 const prevBtn = carousel.parentElement.querySelector('.projects__nav--prev');
 const nextBtn = carousel.parentElement.querySelector('.projects__nav--next');
 
@@ -138,14 +139,20 @@ function updateNavVisibility() {
     const clientWidth = carousel.clientWidth;
     const scrollLeft = carousel.scrollLeft;
 
-    // Показываем кнопки, только если контент не помещается
     const shouldShowNav = scrollWidth > clientWidth;
+
+    // Управляем кнопками
     prevBtn.toggleAttribute('hidden', !shouldShowNav);
     nextBtn.toggleAttribute('hidden', !shouldShowNav);
 
+    // Управляем ВСЕМ контейнером навигации
+    if (navContainer) {
+        navContainer.style.display = shouldShowNav ? 'flex' : 'none';
+    }
+
     // Отключаем кнопки на краях
     prevBtn.disabled = scrollLeft === 0;
-    nextBtn.disabled = scrollLeft + clientWidth >= scrollWidth - 1; // -1 на случай дробных значений
+    nextBtn.disabled = scrollLeft + clientWidth >= scrollWidth - 1;
 }
 
 // Прокрутка на ширину карточки (или 80% ширины контейнера)
