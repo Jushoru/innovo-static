@@ -236,6 +236,7 @@ svg * {
 }
 
 .toggle-button-container {
+    font-family: 'Manrope', 'sans-serif';
     background: var(--bg-blue);
     border: none;
     font-weight: 600;
@@ -1031,6 +1032,7 @@ hr {
 .projects__nav-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 
