@@ -250,19 +250,13 @@ svg * {
     transition: background 0.2s;
     cursor: pointer;
 }
-@media (hover: hover) and (pointer: fine) {
-    .toggle-button-container:hover {
-        background: var(--accent-blue);
-        color: white;
-    }
-}
+
+.toggle-button-container:hover,
 .toggle-button-container:active,
 .toggle-button-container:focus {
     background: var(--accent-blue);
     color: white;
-    outline: none;
 }
-
 
 body {
     display: flex;
