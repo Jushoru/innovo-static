@@ -75,7 +75,7 @@
                       Удобно, просто, эффективно                    </h3>
                   <div id="info__typewriter">
             <span class="info__typewriter-wrapper">
-                ОТСЛЕЖИВАНИЕ 
+                ОТСЛЕЖИВАНИЕ В
                 <span class="typewriter-cursor"></span>
             </span>
                   </div>
@@ -83,17 +83,14 @@
                       <a href="#" class="accent-button">
                           Пробный период                        </a>
                   </div>
-                  <!--        TODO: добавить wp-ACF поля-->
+
                   <div id="modal-0" class="modal">
-                      <div class="modal__overlay" data-close="0">
-                      </div>
+                      <div class="modal__overlay" data-close="0"></div>
                       <div class="modal__content">
                           <h3 class="modal-title">
-                              Свяжитесь с нами
-                          </h3>
+                              Свяжитесь с нами                            </h3>
                           <p class="form-paragraph paragraph">
-                              Заполните форму ниже, и мы свяжемся с вами в ближайшее время
-                          </p>
+                              Заполните форму ниже, и мы свяжемся с вами в ближайшее время                            </p>
                           <hr>
                           <form action="#" method="POST" class="form">
                               <ul class="form-inputs">
@@ -107,44 +104,35 @@
                                   </li>
                                   <li>
                                       <label for="trial-email">E-mail</label>
-                                      <input type="email" id="trial-email" name="trial_email" placeholder="example@domain.com" required="">
+                                      <input type="email" id="trial-email" name="trial_email" placeholder="d" required="">
                                   </li>
                                   <li>
                                       <label for="trial-comment">Комментарий</label>
-                                      <textarea id="trial-comment" name="trial-comment" placeholder="Расскажите о вашем запросе" required=""></textarea>
+                                      <textarea id="trial-comment" name="trial_comment" placeholder="Расскажите о вашем запросе" required=""></textarea>
                                   </li>
                               </ul>
                               <div class="form-checkbox-group">
                                   <label class="form-checkbox">
                                       <input type="checkbox" name="privacy_policy" required="">
                                       <span class="form-checkbox__label-text">
-                                            Я согласен с&nbsp;
-                                            <a href="/privacy-policy" target="_blank">
-                                                политикой конфиденциальности
-                                            </a>
-                                        </span>
+                        <p>Я согласен с&nbsp;<a href="/privacy-policy" target="_blank" rel="noopener">политикой конфиденциальности</a></p>
+                    </span>
                                   </label>
-
                                   <label class="form-checkbox">
                                       <input type="checkbox" name="personal_data" required="">
                                       <span class="form-checkbox__label-text">
-                                            Я даю согласие на&nbsp;
-                                            <a href="/personal-data" target="_blank">
-                                                обработку персональных данных
-                                            </a>
-                                        </span>
+                        <p>Я даю согласие на&nbsp;<a href="/personal-data" target="_blank" rel="noopener">обработку персональных данных</a></p>
+                    </span>
                                   </label>
                               </div>
                               <div class="form-buttons-group">
                                   <div class="form-button-container">
                                       <button type="submit" class="form-button accent-button">
-                                          Отправить
-                                      </button>
+                                          Отправить                                        </button>
                                   </div>
                                   <div class="form-button-container" data-close="0">
                                       <button type="button" class="form-button accent-button accent-button--transparent">
-                                          Отмена
-                                      </button>
+                                          Отмена                                        </button>
                                   </div>
                               </div>
                           </form>
@@ -595,7 +583,7 @@
                           <span class="projects__card-hashtag">#1С:ERP</span>
                       </div>
                       <div class="projects__card-button-container">
-                          <a class="projects__card-button">Пробный период</a>
+                          <a class="projects__card-button">Перейти→</a>
                       </div>
                   </div>
               </div>
@@ -695,11 +683,11 @@
                   </div>
               </div>
           </div>
-          <div class="projects__nav-container" style="display: flex;">
-              <button class="toggle-button-container projects__nav projects__nav--prev" aria-label="Предыдущий проект">
+          <div class="projects__nav-container" style="display: none;">
+              <button class="toggle-button-container projects__nav projects__nav--prev" aria-label="Предыдущий проект" hidden="" disabled="">
                   ←
               </button>
-              <button class="toggle-button-container projects__nav projects__nav--next" aria-label="Следующий проект">
+              <button class="toggle-button-container projects__nav projects__nav--next" aria-label="Следующий проект" hidden="" disabled="">
                   →
               </button>
           </div>
@@ -717,12 +705,12 @@
       <div class="marketing__items">
           <div class="marketing__buttons-group">
               <div class="accent-button-container">
-                  <a href="https://it-innovo.ru/" class="accent-button">
+                  <a href="https://t.me/innovo_visiting_bot" class="accent-button">
                       Начать сегодня                    </a>
               </div>
-              <div class="accent-button-container">
-                  <a href="https://it-innovo.ru/" class="accent-button accent-button--transparent">
-                      Связаться с нами                    </a>
+              <div class="contact-button accent-button-container" data-project="0">
+                  <button class="accent-button accent-button--transparent">
+                      Связаться с нами                    </button>
               </div>
           </div>
           <div class="pin pin--accent">
