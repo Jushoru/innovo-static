@@ -401,6 +401,7 @@ label {
     line-height: 26px;
     text-transform: none;
     margin: 0;
+    text-align: start;
     max-width: calc(100% - 48px - 30px)
 }
 
@@ -606,7 +607,7 @@ textarea {
 }
 
 .hero-inner {
-    margin-top: 400px;
+    margin-top: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -614,9 +615,7 @@ textarea {
 }
 @media (max-width: 1023px) {
     .hero-inner {
-        justify-content: space-between;
-        position: relative;
-        height: 100%;
+        margin-top: 0px;
     }
 }
 
@@ -774,6 +773,8 @@ textarea {
 
 .form-paragraph {
     margin-top: 10px;
+    text-align: start;
+    max-width: calc(100% - 48px - 30px)
 }
 
 .form {
@@ -789,6 +790,7 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    text-align: start;
 }
 
 .form-checkbox-group {
@@ -812,7 +814,6 @@ textarea {
 .form-checkbox__label-text {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
 }
 
 .form-checkbox input[type="checkbox"] {
@@ -831,6 +832,7 @@ textarea {
     border-radius: 4px;
     flex-shrink: 0;
     transition: all 0.2s ease;
+    margin-right: 10px;
 }
 
 .form-checkbox input[type="checkbox"]:checked + .form-checkbox__label-text::before {
@@ -1276,10 +1278,11 @@ textarea {
 
 /*------------------------------- Modals */
 
-
-
 .modal {
     position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     top: 0;
     left: 0;
     width: 100%;
@@ -1307,17 +1310,16 @@ textarea {
 .modal__content {
     position: relative;
     max-width: 800px;
-    max-height: 90vh;
     overflow-y: auto;
     background: white;
+    max-height: calc(100% - 50px);
     border-radius: 20px;
     padding: var(--content-padding);
-    margin: 5vh auto;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     transform: translateY(200px);
     transition: transform 0.3s ease;
 }
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
     .modal__content {
         max-width: 100dvw;
         max-height: 100dvh;
@@ -1326,6 +1328,17 @@ textarea {
         border-radius: 0;
         margin: 0;
     }
+}
+.modal__content::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    margin: 10px 0;
+}
+
+.modal__content::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin: 10px 0;
 }
 .modal.active .modal__content {
     transform: translateY(0);
