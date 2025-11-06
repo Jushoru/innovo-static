@@ -180,7 +180,7 @@ updateNavVisibility();
 //----------------------------Логика для открытия popup'ов секции projects----------------------------
 
 // Открытие модального окна по клику на карточку
-document.querySelectorAll('.projects__card').forEach(card => {
+document.querySelectorAll('.projects__card, .trial-period-button').forEach(card => {
     card.addEventListener('click', () => {
         const projectId = card.dataset.project;
         const modal = document.getElementById(`modal-${projectId}`);
@@ -206,7 +206,7 @@ document.querySelectorAll('[data-close]').forEach(element => {
 // Закрытие по нажатию Esc
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        document.querySelectorAll('.project-modal.active').forEach(modal => {
+        document.querySelectorAll('.modal.active').forEach(modal => {
             modal.classList.remove('active');
             document.body.style.overflow = '';
         });
