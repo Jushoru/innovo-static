@@ -121,94 +121,154 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-});
+
 
 
 
 //----------------------------Логика для стрелок projects----------------------------
 
-const carousel = document.querySelector('[data-carousel]');
+    const carousel = document.querySelector('[data-carousel]');
 
-const navContainer = carousel.parentElement.querySelector('.projects__nav-container');
-const prevBtn = carousel.parentElement.querySelector('.projects__nav--prev');
-const nextBtn = carousel.parentElement.querySelector('.projects__nav--next');
+    const navContainer = carousel.parentElement.querySelector('.projects__nav-container');
+    const prevBtn = carousel.parentElement.querySelector('.projects__nav--prev');
+    const nextBtn = carousel.parentElement.querySelector('.projects__nav--next');
 
 // Проверяем, нужно ли вообще отображать навигацию
-function updateNavVisibility() {
-    const scrollWidth = carousel.scrollWidth;
-    const clientWidth = carousel.clientWidth;
-    const scrollLeft = carousel.scrollLeft;
+    function updateNavVisibility() {
+        const scrollWidth = carousel.scrollWidth;
+        const clientWidth = carousel.clientWidth;
+        const scrollLeft = carousel.scrollLeft;
 
-    const shouldShowNav = scrollWidth > clientWidth;
+        const shouldShowNav = scrollWidth > clientWidth;
 
-    // Управляем кнопками
-    prevBtn.toggleAttribute('hidden', !shouldShowNav);
-    nextBtn.toggleAttribute('hidden', !shouldShowNav);
+        // Управляем кнопками
+        prevBtn.toggleAttribute('hidden', !shouldShowNav);
+        nextBtn.toggleAttribute('hidden', !shouldShowNav);
 
-    // Управляем ВСЕМ контейнером навигации
-    if (navContainer) {
-        navContainer.style.display = shouldShowNav ? 'flex' : 'none';
+        // Управляем ВСЕМ контейнером навигации
+        if (navContainer) {
+            navContainer.style.display = shouldShowNav ? 'flex' : 'none';
+        }
+
+        // Отключаем кнопки на краях
+        prevBtn.disabled = scrollLeft === 0;
+        nextBtn.disabled = scrollLeft + clientWidth >= scrollWidth - 1;
     }
-
-    // Отключаем кнопки на краях
-    prevBtn.disabled = scrollLeft === 0;
-    nextBtn.disabled = scrollLeft + clientWidth >= scrollWidth - 1;
-}
 
 // Прокрутка на ширину карточки (или 80% ширины контейнера)
-function scrollByCard(direction) {
-    const card = carousel.querySelector('.projects__card');
-    const cardWidth = card ? card.offsetWidth + parseInt(getComputedStyle(carousel).gap) : carousel.clientWidth * 0.8;
-    carousel.scrollBy({
-        left: direction * cardWidth,
-        behavior: 'smooth'
-    });
-}
-
-// Слушаем скролл и изменение размера
-carousel.addEventListener('scroll', updateNavVisibility);
-window.addEventListener('resize', updateNavVisibility);
-
-// Кнопки
-prevBtn?.addEventListener('click', () => scrollByCard(-1));
-nextBtn?.addEventListener('click', () => scrollByCard(1));
-
-// Инициализация
-updateNavVisibility();
-
-
-//----------------------------Логика для открытия popup'ов секции projects----------------------------
-
-// Открытие модального окна по клику на карточку
-document.querySelectorAll('.projects__card, .trial-period-button').forEach(card => {
-    card.addEventListener('click', () => {
-        const projectId = card.dataset.project;
-        const modal = document.getElementById(`modal-${projectId}`);
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // запрет прокрутки
-        }
-    });
-});
-
-// Закрытие по клику на оверлей или кнопку
-document.querySelectorAll('[data-close]').forEach(element => {
-    element.addEventListener('click', () => {
-        const projectId = element.dataset.close;
-        const modal = document.getElementById(`modal-${projectId}`);
-        if (modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = ''; // вернуть прокрутку
-        }
-    });
-});
-
-// Закрытие по нажатию Esc
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        document.querySelectorAll('.modal.active').forEach(modal => {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
+    function scrollByCard(direction) {
+        const card = carousel.querySelector('.projects__card');
+        const cardWidth = card ? card.offsetWidth + parseInt(getComputedStyle(carousel).gap) : carousel.clientWidth * 0.8;
+        carousel.scrollBy({
+            left: direction * cardWidth,
+            behavior: 'smooth'
         });
     }
+
+// Слушаем скролл и изменение размера
+    carousel.addEventListener('scroll', updateNavVisibility);
+    window.addEventListener('resize', updateNavVisibility);
+
+// Кнопки
+    prevBtn?.addEventListener('click', () => scrollByCard(-1));
+    nextBtn?.addEventListener('click', () => scrollByCard(1));
+
+// Инициализация
+    updateNavVisibility();
+
+
+//----------------------------Логика для модалок----------------------------
+
+// Открытие модального окна по клику на карточку
+    document.querySelectorAll('.projects__card, .trial-period-button').forEach(card => {
+        card.addEventListener('click', () => {
+            const projectId = card.dataset.project;
+            const modal = document.getElementById(`modal-${projectId}`);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // запрет прокрутки
+            }
+        });
+    });
+
+// Закрытие по клику на оверлей или кнопку
+    document.querySelectorAll('[data-close]').forEach(element => {
+        element.addEventListener('click', () => {
+            const projectId = element.dataset.close;
+            const modal = document.getElementById(`modal-${projectId}`);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // вернуть прокрутку
+            }
+        });
+    });
+
+// Закрытие по нажатию Esc
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal.active').forEach(modal => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+    });
+
+
+//----------------------------Валидация модалок----------------------------
+
+//----------------------------Валидация модалок----------------------------
+//----------------------------Валидация форм с нативными попапами----------------------------
+
+    const form = document.querySelector('.form');
+    if (!form) return;
+
+    const nameInput = form.querySelector('#trial-name');
+    const phoneInput = form.querySelector('#trial-phone');
+    const emailInput = form.querySelector('#trial-email');
+    const commentInput = form.querySelector('#trial-comment');
+
+    // Функция для проверки одного поля
+    const validateField = (input) => {
+        input.setCustomValidity(''); // сброс старого сообщения
+
+        if (input === nameInput && input.value.trim().length < 2) {
+            input.setCustomValidity('Имя должно содержать минимум 2 символа');
+        }
+
+        if (input === phoneInput) {
+            const phone = input.value.trim();
+            if (!/^\d+$/.test(phone)) {
+                input.setCustomValidity('Номер телефона должен содержать только цифры');
+            } else if (phone.length < 10) {
+                input.setCustomValidity('Введите корректный номер телефона (минимум 10 цифр)');
+            }
+        }
+
+        if (input === emailInput && !input.validity.valid) {
+            input.setCustomValidity('Введите корректный адрес электронной почты');
+        }
+
+        if (input === commentInput && input.value.trim().length < 5) {
+            input.setCustomValidity('Комментарий должен содержать минимум 5 символов');
+        }
+    };
+
+    // Повторная проверка при вводе
+    [nameInput, phoneInput, emailInput, commentInput].forEach(input => {
+        input.addEventListener('input', () => {
+            validateField(input);
+        });
+    });
+
+    form.addEventListener('submit', (e) => {
+        // Проверяем все поля перед отправкой
+        [nameInput, phoneInput, emailInput, commentInput].forEach(validateField);
+
+        if (!form.checkValidity()) {
+            e.preventDefault();
+            form.reportValidity(); // покажет нативные попапы
+        } else {
+            console.log('Форма валидна и готова к отправке');
+        }
+    });
 });
